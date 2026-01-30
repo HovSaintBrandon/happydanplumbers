@@ -1,14 +1,14 @@
 // ========================================
 // Mobile Menu Toggle
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileNav = document.getElementById('mobileNav');
   const menuIcon = mobileMenuBtn.querySelector('.menu-icon');
   const closeIcon = mobileMenuBtn.querySelector('.close-icon');
-  mobileMenuBtn.addEventListener('click', function() {
+  mobileMenuBtn.addEventListener('click', function () {
     const isOpen = !mobileNav.classList.contains('hidden');
-    
+
     if (isOpen) {
       mobileNav.classList.add('hidden');
       menuIcon.classList.remove('hidden');
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Close mobile menu when clicking on a link
   const mobileNavLinks = mobileNav.querySelectorAll('.mobile-nav-link');
   mobileNavLinks.forEach(link => {
-    link.addEventListener('click', function() {
+    link.addEventListener('click', function () {
       mobileNav.classList.add('hidden');
       menuIcon.classList.remove('hidden');
       closeIcon.classList.add('hidden');
@@ -32,11 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========================================
 // Form Tabs
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const formTabs = document.querySelectorAll('.form-tab');
-  
+
   formTabs.forEach(tab => {
-    tab.addEventListener('click', function() {
+    tab.addEventListener('click', function () {
       // Remove active class from all tabs
       formTabs.forEach(t => t.classList.remove('active'));
       // Add active class to clicked tab
@@ -44,15 +44,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// ========================================
+// Service Tabs
+// ========================================
+document.addEventListener('DOMContentLoaded', function () {
+  const serviceTabBtns = document.querySelectorAll('.service-tab-btn');
+  const serviceContents = document.querySelectorAll('.tab-content');
+
+  serviceTabBtns.forEach(btn => {
+    btn.addEventListener('click', function () {
+      // Remove active class from all buttons
+      serviceTabBtns.forEach(b => b.classList.remove('active'));
+      // Add active class to clicked button
+      this.classList.add('active');
+
+      // Hide all contents
+      serviceContents.forEach(content => content.classList.remove('active'));
+
+      // Show target content
+      const targetId = this.getAttribute('data-service-tab');
+      const targetContent = document.getElementById(targetId);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+    });
+  });
+});
 // ========================================
 // Form Submission
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const contactForm = document.getElementById('contactForm');
-  
-  contactForm.addEventListener('submit', function(e) {
+
+  contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    
+
     // Get form data
     const formData = {
       firstName: document.getElementById('firstName').value,
@@ -62,13 +89,13 @@ document.addEventListener('DOMContentLoaded', function() {
       zip: document.getElementById('zip').value,
       smsOptIn: document.getElementById('sms').checked
     };
-    
+
     // Simulate form submission
     console.log('Form submitted:', formData);
-    
+
     // Show success message (you can customize this)
     alert('Thank you! We will call you shortly.');
-    
+
     // Reset form
     contactForm.reset();
   });
@@ -76,12 +103,12 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========================================
 // Phone Number Formatting
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const phoneInput = document.getElementById('phone');
-  
-  phoneInput.addEventListener('input', function(e) {
+
+  phoneInput.addEventListener('input', function (e) {
     let value = e.target.value.replace(/\D/g, '');
-    
+
     if (value.length > 0) {
       if (value.length <= 3) {
         value = '(' + value;
@@ -91,17 +118,17 @@ document.addEventListener('DOMContentLoaded', function() {
         value = '(' + value.slice(0, 3) + ') ' + value.slice(3, 6) + '-' + value.slice(6, 10);
       }
     }
-    
+
     e.target.value = value;
   });
 });
 // ========================================
 // ZIP Code Validation
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const zipInput = document.getElementById('zip');
-  
-  zipInput.addEventListener('input', function(e) {
+
+  zipInput.addEventListener('input', function (e) {
     // Only allow numbers and limit to 5 digits
     e.target.value = e.target.value.replace(/\D/g, '').slice(0, 5);
   });
@@ -109,23 +136,23 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========================================
 // Smooth Scroll for Navigation Links
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const navLinks = document.querySelectorAll('a[href^="#"]');
-  
+
   navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
-      
+
       if (targetId === '#') return;
-      
+
       const targetElement = document.querySelector(targetId);
-      
+
       if (targetElement) {
         e.preventDefault();
-        
+
         const navbarHeight = document.querySelector('.navbar').offsetHeight;
         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-        
+
         window.scrollTo({
           top: targetPosition,
           behavior: 'smooth'
@@ -137,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========================================
 // Scroll Animation (Intersection Observer)
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -177,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 // Add animate-in styles
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const style = document.createElement('style');
   style.textContent = `
     .animate-in {
@@ -190,10 +217,10 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========================================
 // Navbar Background on Scroll
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const navbar = document.querySelector('.navbar');
-  
-  window.addEventListener('scroll', function() {
+
+  window.addEventListener('scroll', function () {
     if (window.scrollY > 100) {
       navbar.style.boxShadow = '0 4px 20px -4px rgba(26, 35, 50, 0.15)';
     } else {
