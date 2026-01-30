@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://happydanplumbers.co.ke/sitemap.xml
