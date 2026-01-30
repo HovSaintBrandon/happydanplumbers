@@ -242,14 +242,10 @@ ul {
   gap: 0.5rem;
 }
 
-.logo-icon {
-  background: var(--primary);
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1.25rem;
-  padding: 0.5rem;
-  border-radius: 50%;
+.logo-image {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
 }
 
 .logo-name {
