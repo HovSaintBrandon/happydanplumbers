@@ -1605,15 +1605,24 @@ ul {
 ======================================== */
 .service-modal-content {
   max-width: 800px;
+  width: 90%;
   padding: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  max-height: 90vh;
+  /* Max height for mobile */
+  overflow-y: auto;
+  /* Allow scrolling within modal */
 }
 
 @media (min-width: 768px) {
   .service-modal-content {
     flex-direction: row;
+    overflow-y: visible;
+    /* Reset for desktop if needed, or keep auto */
+    height: auto;
+    max-height: 85vh;
   }
 }
 
@@ -1630,15 +1639,17 @@ ul {
 }
 
 .service-modal-image {
-  height: 250px;
+  height: 200px;
+  /* Reduced height for mobile */
   background: #f0f0f0;
-  flex: 1;
+  flex-shrink: 0;
 }
 
 @media (min-width: 768px) {
   .service-modal-image {
     height: auto;
     min-height: 400px;
+    flex: 1;
   }
 }
 
@@ -1649,27 +1660,45 @@ ul {
 }
 
 .service-modal-info {
-  padding: 2rem;
+  padding: 1.5rem;
+  /* Reduced padding for mobile */
   display: flex;
   flex-direction: column;
   justify-content: center;
   flex: 1;
 }
 
+@media (min-width: 768px) {
+  .service-modal-info {
+    padding: 2.5rem;
+  }
+}
+
 #modalServiceTitle {
   color: var(--primary);
-  margin-bottom: 1rem;
-  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  /* Responsive font size */
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  #modalServiceTitle {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
 }
 
 #modalServiceDescription {
   color: var(--muted-foreground);
   line-height: 1.6;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
 }
 
 .modal-cta {
   margin-top: auto;
+  padding-top: 1rem;
 }
 
 .service-card {
@@ -1678,25 +1707,38 @@ ul {
 
 .close-modal {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.5rem;
+  right: 0.5rem;
   background: white;
   border: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
   z-index: 10;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  /* Touch target */
+  height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.2s;
+  opacity: 0.9;
+}
+
+@media (min-width: 768px) {
+  .close-modal {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+  }
 }
 
 .close-modal:hover {
   background: var(--primary);
   color: white;
+  opacity: 1;
 }
