@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://api.happydanplumbers.co.ke/api/v1';
+const API_BASE_URL = 'https://happydan-backend.onrender.com';
 
 const api = {
     async request(endpoint, options = {}) {
