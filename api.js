@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://happydan-backend.onrender.com';
+const API_BASE_URL = 'https://happydan-backend.onrender.com/api/v1';
 
 const api = {
     async request(endpoint, options = {}) {
@@ -8,15 +8,29 @@ const api = {
             ...options.headers,
         };
 
+        // Logging for debugging
+        console.log(`🚀 [API Request] ${options.method || 'GET'} ${url}`);
+        if (options.body) {
+            try {
+                console.log('📦 Request Body:', JSON.parse(options.body));
+            } catch (e) {
+                console.log('📦 Request Body:', options.body);
+            }
+        }
+
         try {
             const response = await fetch(url, { ...options, headers });
             const data = await response.json();
+
+            console.log(`✅ [API Response] Status: ${response.status}`);
+            console.log('📄 Full Response Body:', data);
+
             if (!response.ok) {
                 throw new Error(data.message || 'Something went wrong');
             }
             return data;
         } catch (error) {
-            console.error(`API Error (${endpoint}):`, error);
+            console.error(`❌ API Error (${endpoint}):`, error);
             throw error;
         }
     },
